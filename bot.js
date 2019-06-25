@@ -1,22 +1,18 @@
-const Discord = require('discord.io');
-const logger = require('winston');
+const { Client } = require('discord.js');
 const dotenv = require('dotenv');
 dotenv.config();
 const token = process.env.TOKEN;
-// Configure logger settings
-logger.remove(logger.transports.Console);
-logger.add(new logger.transports.Console(), {
-  colorize: true
+
+const bot = new Client();
+
+bot.once('ready', () => {
+  console.log('ready...');
 });
-logger.level = 'debug';
-// Initialize Discord Bot
-const bot = new Discord.Client({
-  token: token,
-  autorun: true
+
+bot.login(token);
+
+bot.on('message', message => {
+  if (message.content === 'test') {
+    message.channel.send('Your test worked');
+  }
 });
-bot.on('ready', function(evt) {
-  logger.info('Connected');
-  logger.info('Logged in as: ');
-  logger.info(bot.username + ' - (' + bot.id + ')');
-});
-bot.on('');
