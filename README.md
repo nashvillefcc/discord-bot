@@ -1,0 +1,3 @@
+# freeCodeCamp Nashville - Discord Bot
+
+Work in progress...

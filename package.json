@@ -1,0 +1,8 @@
+{
+  "name": "fcc-nashville-bot",
+  "version": "1.0.0",
+  "description": "Discord bot for FCC Nashville",
+  "main": "bot.js",
+  "author": "Warpfox",
+  "dependencies": {}
+}
