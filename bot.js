@@ -12,7 +12,12 @@ bot.once('ready', () => {
 bot.login(token);
 
 bot.on('message', message => {
-  if (message.content === 'test') {
-    message.channel.send('Your test worked');
+  if (message.content === '!test') {
+    message.channel.send('Test message');
+  }
+  if (message.content === '!commands') {
+    message.channel.send(
+      `__**Commands:**__\n\`!test\`: Returns a test message.\n`
+    );
   }
 });
