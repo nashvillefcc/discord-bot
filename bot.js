@@ -4,7 +4,7 @@ const eventFetcher = require('./eventFetcher');
 const dotenv = require('dotenv');
 dotenv.config();
 const token = process.env.TOKEN;
-const commandHandler = require('./config/commandHandler');
+const commandHandler = require('./commandHandler');
 
 const bot = new Client();
 
