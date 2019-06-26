@@ -13,7 +13,8 @@ bot.once('ready', () => {
     game: {
       name: 'robot pr0n',
       type: 'WATCHING'
-    }
+    },
+    status: 'dnd'
   });
   console.log('Ready...');
   schedule.scheduleJob('* 7 * * *', async () => {

@@ -1,4 +1,5 @@
 const eventFetcher = require('../eventFetcher');
+const { RichEmbed } = require('discord.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -21,6 +22,12 @@ module.exports = commandHandler = message => {
     }
     case `!next-event`: {
       return eventFetcher.nextEventFetcher(message);
+    }
+    case `!disturb`: {
+      return `Leave me alone! I'm having private time!`;
+    }
+    case `!didyoueverthinkyoumayenjoyasausage`: {
+      return new RichEmbed().setImage('https://i.redd.it/uqxma5zdzqk11.png');
     }
     default:
       return '';
