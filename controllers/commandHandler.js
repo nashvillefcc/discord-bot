@@ -15,7 +15,7 @@ module.exports = commandHandler = message => {
     - !next-event: Returns info for the next freeCodeCamp event`;
     }
     case '!time': {
-      return `The time is now ${new Date().toLocaleTimeString('en-us', {
+      return `The time is now ${new Date().toLocaleTimeString('en-US', {
         timeZone: 'America/Chicago',
         hour: '2-digit',
         minute: '2-digit'
