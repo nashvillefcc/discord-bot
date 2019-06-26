@@ -24,7 +24,7 @@ module.exports = {
           const mnEmbed = new RichEmbed()
             .setTitle(`Mentor Night ${todaysDate}`)
             .setURL(nextEvent.link)
-            .setImage(
+            .setThumbnail(
               'https://secure.meetupstatic.com/photos/event/1/8/d/c/600_459726364.jpeg'
             )
             .setDescription(
@@ -37,7 +37,7 @@ module.exports = {
           const defaultEmbed = new RichEmbed()
             .setTitle(`${nextEvent.title} ${todaysDate}`)
             .setURL(nextEvent.link)
-            .setImage('https://i.imgur.com/pERFswi.png')
+            .setThumbnail('https://i.imgur.com/pERFswi.png')
             .setDescription(
               nextEvent.description.replace(/<[^>]*>?/gm, '').slice(0, 280) +
                 '... (Click title link for full description)'
