@@ -26,5 +26,19 @@ module.exports = [
       type: 'LISTENING'
     },
     status: 'online'
+  },
+  {
+    game: {
+      name: 'with obsolete computer parts',
+      type: 'PLAYING'
+    },
+    status: 'online'
+  },
+  {
+    game: {
+      name: 'patterns in the Matrix',
+      type: 'WATCHING'
+    },
+    status: 'idle'
   }
 ];
