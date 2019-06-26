@@ -15,6 +15,7 @@ bot.once('ready', () => {
       type: 'WATCHING'
     }
   });
+  console.log('Ready...');
   schedule.scheduleJob('* 7 * * *', async () => {
     eventFetcher.todayEventFetcher(bot);
   });
