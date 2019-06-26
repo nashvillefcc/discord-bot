@@ -1,5 +1,5 @@
 const { Client, RichEmbed } = require('discord.js');
-const schedule = require('node-schedule');
+const schedule = require('node-schedule-tz');
 const eventFetcher = require('./services/eventFetcher');
 const presenceGenerator = require('./controllers/presenceGenerator');
 const http = require('http');
@@ -13,10 +13,13 @@ const bot = new Client();
 bot.once('ready', () => {
   bot.user.setPresence(presenceGenerator());
   console.log('Ready...');
-  schedule.scheduleJob('* 7 * * *', async () => {
-    eventFetcher.todayEventFetcher(bot);
-  });
-  schedule.scheduleJob('* /4 * * *', () => {
+  schedule.scheduleJob(
+    { hour: 7, minute: 00, tz: 'America/Chicago' },
+    async () => {
+      eventFetcher.todayEventFetcher(bot);
+    }
+  );
+  schedule.scheduleJob('* * /4 * * *', 'America/Chicago', () => {
     bot.user.setPresence(presenceGenerator());
   });
 });

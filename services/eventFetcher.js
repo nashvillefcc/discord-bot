@@ -20,9 +20,9 @@ module.exports = {
       .then(body => body[0]);
     if (nextEvent.local_date === todaysDate) {
       switch (nextEvent.name) {
-        case 'Mentor Night': {
-          const embed = new RichEmbed()
-            .setTitle(`@here Mentor Night ${todaysDate}`)
+        case 'Mentor Night':
+          const mnEmbed = new RichEmbed()
+            .setTitle(`Mentor Night ${todaysDate}`)
             .setURL(nextEvent.link)
             .setImage(
               'https://secure.meetupstatic.com/photos/event/1/8/d/c/600_459726364.jpeg'
@@ -31,19 +31,19 @@ module.exports = {
               nextEvent.description.replace(/<[^>]*>?/gm, '').slice(0, 280) +
                 '... (Click title link for full description)'
             );
-          bot.channels.get('586211310434254848').send(embed);
-        }
-        default: {
-          const embed = new RichEmbed()
-            .setTitle(`@here ${nextEvent.title} ${todaysDate}`)
+          bot.channels.get('586211310434254848').send(mnEmbed);
+          break;
+        default:
+          const defaultEmbed = new RichEmbed()
+            .setTitle(`${nextEvent.title} ${todaysDate}`)
             .setURL(nextEvent.link)
             .setImage('https://i.imgur.com/pERFswi.png')
             .setDescription(
               nextEvent.description.replace(/<[^>]*>?/gm, '').slice(0, 280) +
                 '... (Click title link for full description)'
             );
-          bot.channels.get('586213122008809487').send(embed);
-        }
+          bot.channels.get('586213122008809487').send(defaultEmbed);
+          break;
       }
     }
   },
