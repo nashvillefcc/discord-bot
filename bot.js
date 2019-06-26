@@ -11,8 +11,8 @@ const bot = new Client();
 bot.once('ready', () => {
   bot.user.setPresence({
     game: {
-      name: 'diagnostic sleep cycle',
-      type: 'STREAMING'
+      name: 'robot pr0n',
+      type: 'WATCHING'
     }
   });
   schedule.scheduleJob('* 7 * * *', async () => {
