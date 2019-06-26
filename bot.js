@@ -2,6 +2,7 @@ const { Client, RichEmbed } = require('discord.js');
 const schedule = require('node-schedule');
 const eventFetcher = require('./services/eventFetcher');
 const presenceGenerator = require('./controllers/presenceGenerator');
+const http = require('http');
 const dotenv = require('dotenv');
 dotenv.config();
 const token = process.env.TOKEN;
