@@ -14,7 +14,7 @@ bot.once('ready', () => {
   bot.user.setPresence(presenceGenerator());
   console.log('Ready...');
   schedule.scheduleJob(
-    { hour: 7, minute: 00, tz: 'America/Chicago' },
+    { hour: 7, minute: 0, tz: 'America/Chicago' },
     async () => {
       eventFetcher.todayEventFetcher(bot);
     }
