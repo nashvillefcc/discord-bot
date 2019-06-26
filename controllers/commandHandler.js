@@ -1,4 +1,4 @@
-const eventFetcher = require('./eventFetcher');
+const eventFetcher = require('../services/eventFetcher');
 const { RichEmbed } = require('discord.js');
 const dotenv = require('dotenv');
 dotenv.config();
