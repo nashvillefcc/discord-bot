@@ -30,3 +30,7 @@ bot.on('message', async message => {
     message.channel.send(response);
   }
 });
+
+setInterval(() => {
+  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 280000);
