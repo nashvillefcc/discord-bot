@@ -59,16 +59,10 @@ module.exports = {
 			.then(response => response.json())
 			.then(body => body[0]);
 		const date = new Date(
-			new Date(nextEvent.local_date).toLocaleString('en-US', {
-				timeZone: 'America/Chicago',
-			})
-		);
-		date.setDate(nextEvent.local_date.slice(8, 10));
-		const truncDate = date
-			.toLocaleString()
-			.slice(0, date.toLocaleString().indexOf(','));
+			`${nextEvent.local_date} ${nextEvent.local_time}`
+		).toLocaleString('en-US');
 		const embed = new RichEmbed()
-			.setTitle(`${nextEvent.name}, ${truncDate} at ${nextEvent.local_time}`)
+			.setTitle(`${nextEvent.name}, ${date}`)
 			.setURL(nextEvent.link)
 			.setThumbnail('https://i.imgur.com/pERFswi.png')
 			.setDescription(
