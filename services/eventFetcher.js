@@ -58,9 +58,7 @@ module.exports = {
 		)
 			.then(response => response.json())
 			.then(body => body[0]);
-		const date = new Date(
-			`${nextEvent.local_date} ${nextEvent.local_time}`
-		).toLocaleString('en-US');
+		const date = new Date(`${nextEvent.local_date} ${nextEvent.local_time}`);
 		const embed = new RichEmbed()
 			.setTitle(
 				`${nextEvent.name} ${date
