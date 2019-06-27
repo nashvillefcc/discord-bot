@@ -68,7 +68,7 @@ module.exports = {
 			.toLocaleString()
 			.slice(0, date.toLocaleString().indexOf(','));
 		const embed = new RichEmbed()
-			.setTitle(`${truncDate} ${nextEvent.name}`)
+			.setTitle(`${nextEvent.name}, ${truncDate} at ${nextEvent.local_time}`)
 			.setURL(nextEvent.link)
 			.setThumbnail('https://i.imgur.com/pERFswi.png')
 			.setDescription(
