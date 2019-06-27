@@ -58,8 +58,17 @@ module.exports = {
 		)
 			.then(response => response.json())
 			.then(body => body[0]);
+		const date = new Date(
+			new Date(nextEvent.local_date).toLocaleString('en-US', {
+				timeZone: 'America/Chicago',
+			})
+		);
+		date.setDate(nextEvent.local_date.slice(8, 10));
+		const truncDate = date
+			.toLocaleString()
+			.slice(0, date.toLocaleString().indexOf(','));
 		const embed = new RichEmbed()
-			.setTitle(`${nextEvent.local_date} ${nextEvent.name}`)
+			.setTitle(`${truncDate} ${nextEvent.name}`)
 			.setURL(nextEvent.link)
 			.setThumbnail('https://i.imgur.com/pERFswi.png')
 			.setDescription(
