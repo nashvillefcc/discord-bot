@@ -18,7 +18,7 @@ module.exports = [
       name: 'the waves of the digital ocean',
       type: 'LISTENING'
     },
-    status: 'idle'
+    status: 'online'
   },
   {
     game: {
@@ -39,6 +39,27 @@ module.exports = [
       name: 'patterns in the Matrix',
       type: 'WATCHING'
     },
-    status: 'idle'
+    status: 'online'
+  },
+  {
+    game: {
+      name: 'new neuropathic connections on deck 2, room 3653',
+      type: 'STREAMING'
+    },
+    status: 'online'
+  },
+  {
+    game: {
+      name: 'instruction materials on submicron matrix transfer technology',
+      type: 'WATCHING'
+    },
+    status: 'online'
+  },
+  {
+    game: {
+      name: 'a lecture on using hytritium to neutralize water contamination',
+      type: 'LISTENING'
+    },
+    status: 'online'
   }
 ];
