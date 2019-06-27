@@ -43,8 +43,8 @@ module.exports = [
   },
   {
     game: {
-      name: 'new neuropathic connections on deck 2, room 3653',
-      type: 'STREAMING'
+      name: 'new neuropathic connections form in his positronic brain',
+      type: 'WATCHING'
     },
     status: 'online'
   },
