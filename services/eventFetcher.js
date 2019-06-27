@@ -52,11 +52,6 @@ module.exports = {
 		}
 	},
 	async nextEventFetcher(message) {
-		const today = new Date()
-			.toLocaleString('en-US', {
-				timeZone: 'America/Chicago',
-			})
-			.slice(0, 9);
 		const channel = message.channel;
 		const nextEvent = await fetch(
 			`https://api.meetup.com/freeCodeCamp-Nashville/events?&sign=true&photo-host=public&page=1`
@@ -64,7 +59,7 @@ module.exports = {
 			.then(response => response.json())
 			.then(body => body[0]);
 		const embed = new RichEmbed()
-			.setTitle(`${today} ${nextEvent.name}`)
+			.setTitle(`${nextEvent.date} ${nextEvent.name}`)
 			.setURL(nextEvent.link)
 			.setThumbnail('https://i.imgur.com/pERFswi.png')
 			.setDescription(
