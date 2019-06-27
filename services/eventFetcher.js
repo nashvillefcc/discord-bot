@@ -62,7 +62,18 @@ module.exports = {
 			`${nextEvent.local_date} ${nextEvent.local_time}`
 		).toLocaleString('en-US');
 		const embed = new RichEmbed()
-			.setTitle(`${nextEvent.name}, ${date}`)
+			.setTitle(
+				`${nextEvent.name} ${date
+					.toLocaleString('en-US')
+					.slice(
+						0,
+						date.toLocaleString('en-US').indexOf(',')
+					)} ${date.toLocaleString('en-US', {
+					hour: 'numeric',
+					minute: 'numeric',
+					hour12: true,
+				})}`
+			)
 			.setURL(nextEvent.link)
 			.setThumbnail('https://i.imgur.com/pERFswi.png')
 			.setDescription(
