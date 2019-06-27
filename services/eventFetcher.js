@@ -59,7 +59,7 @@ module.exports = {
 			.then(response => response.json())
 			.then(body => body[0]);
 		const embed = new RichEmbed()
-			.setTitle(`${nextEvent.date} ${nextEvent.name}`)
+			.setTitle(`${nextEvent.local_date} ${nextEvent.name}`)
 			.setURL(nextEvent.link)
 			.setThumbnail('https://i.imgur.com/pERFswi.png')
 			.setDescription(
