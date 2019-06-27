@@ -19,13 +19,21 @@ module.exports = {
 			.then(response => response.json())
 			.then(body => body[0]);
 		if (nextEvent.local_date === todaysDate) {
+			const date = new Date(`${nextEvent.local_date} ${nextEvent.local_time}`);
 			switch (nextEvent.name) {
 				case 'Mentor Night':
 					const mnEmbed = new RichEmbed()
 						.setTitle(
-							`Mentor Night ${today
-								.toLocaleString('en-US', { timeZone: 'America/Chicago' })
-								.slice(0, 9)}`
+							`Mentor Night ${date
+								.toLocaleString('en-US')
+								.slice(
+									0,
+									date.toLocaleString('en-US').indexOf(',')
+								)} ${date.toLocaleString('en-US', {
+								hour: 'numeric',
+								minute: 'numeric',
+								hour12: true,
+							})}`
 						)
 						.setURL(nextEvent.link)
 						.setThumbnail(
@@ -39,7 +47,18 @@ module.exports = {
 					break;
 				default:
 					const defaultEmbed = new RichEmbed()
-						.setTitle(`${nextEvent.title} ${todaysDate}`)
+						.setTitle(
+							`${nextEvent.title} ${date
+								.toLocaleString('en-US')
+								.slice(
+									0,
+									date.toLocaleString('en-US').indexOf(',')
+								)} ${date.toLocaleString('en-US', {
+								hour: 'numeric',
+								minute: 'numeric',
+								hour12: true,
+							})}`
+						)
 						.setURL(nextEvent.link)
 						.setThumbnail('https://i.imgur.com/pERFswi.png')
 						.setDescription(
