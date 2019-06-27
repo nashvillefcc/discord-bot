@@ -19,7 +19,7 @@ bot.once('ready', () => {
       eventFetcher.todayEventFetcher(bot);
     }
   );
-  schedule.scheduleJob('* * /4 * * *', 'America/Chicago', () => {
+  schedule.scheduleJob('* /30 * * * *', 'America/Chicago', () => {
     bot.user.setPresence(presenceGenerator());
   });
 });
