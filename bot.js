@@ -27,9 +27,11 @@ bot.once('ready', () => {
 bot.login(token);
 
 bot.on('message', async message => {
-	const response = await commandHandler(message);
-	if (response) {
-		message.channel.send(response);
+	if (message.content[0] === '!') {
+		const response = await commandHandler(message);
+		if (response) {
+			message.channel.send(response);
+		}
 	}
 });
 
