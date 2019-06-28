@@ -1,19 +1,12 @@
 const { RichEmbed } = require('discord.js');
 const fetch = require('node-fetch');
 const dateStringFormatter = require('../helpers/dateStringFormatter');
+const todaysDateCreator = require('../helpers/todaysDateCreator');
+const channelIds = require('../data/channel_ids');
 
 module.exports = {
   async todayEventFetcher(bot) {
-    const today = new Date(
-      new Date().toLocaleString('en-US', {
-        timeZone: 'America/Chicago'
-      })
-    );
-    const todaysDate = new Date(
-      today.getTime() - today.getTimezoneOffset() * 60000
-    )
-      .toISOString()
-      .split('T')[0];
+    const todaysDate = todaysDateCreator();
     const nextEvent = await fetch(
       `https://api.meetup.com/freeCodeCamp-Nashville/events?&sign=true&photo-host=public&page=1`
     )
@@ -33,7 +26,7 @@ module.exports = {
               nextEvent.description.replace(/<[^>]*>?/gm, '').slice(0, 280) +
                 '... (Click title link for full description)'
             );
-          bot.channels.get('586211310434254848').send(mnEmbed);
+          bot.channels.get(channelIds.mentorNight_announcements).send(mnEmbed);
           break;
         default:
           const defaultEmbed = new RichEmbed()
@@ -44,7 +37,9 @@ module.exports = {
               nextEvent.description.replace(/<[^>]*>?/gm, '').slice(0, 280) +
                 '... (Click title link for full description)'
             );
-          bot.channels.get('586213122008809487').send(defaultEmbed);
+          bot.channels
+            .get(channelIds.monthlyMeetup_announcements)
+            .send(defaultEmbed);
           break;
       }
     }
