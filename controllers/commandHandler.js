@@ -8,11 +8,13 @@ module.exports = commandHandler = message => {
     case '!test': {
       return 'Test message.';
     }
-    case '!help' || '!commands': {
+    case '!help':
+    case '!commands': {
       return `__Commands__:
     - !test: Returns a test message.
     - !time: Returns the local time.
-    - !next-event: Returns info for the next freeCodeCamp event`;
+    - !next-event: Returns info for the next freeCodeCamp event
+    - !mods: get a list of moderators/admins currently online`;
     }
     case '!time': {
       return `The time is now ${new Date().toLocaleTimeString('en-US', {
@@ -29,6 +31,16 @@ module.exports = commandHandler = message => {
     }
     case `!didyoueverthinkyoumayenjoyasausage`: {
       return new RichEmbed().setImage('https://i.redd.it/uqxma5zdzqk11.png');
+    }
+    case `!admins`: {
+      const admins = message.guild.members
+        .filter(
+          m =>
+            m._roles.includes('563146021706661909') ||
+            m._roles.includes('588375598553104434')
+        )
+        .filter(a => a.presence.status === 'online');
+      admins.map(a => message.channel.send(`${a}`));
     }
     default:
       return '';

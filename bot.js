@@ -33,6 +33,16 @@ bot.on('message', async message => {
   }
 });
 
+bot.on('guildMemberAdd', member => {
+  bot.channels
+    .get('542870629737824279')
+    .send(
+      `Greetings <@${
+        member.id
+      }>. This discord server has a bot (me!). Please use <#586210139053228042> to introduce yourself. Type \`!help\` or \`!commands\` to see things I can help you with.`
+    );
+});
+
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 280000);
