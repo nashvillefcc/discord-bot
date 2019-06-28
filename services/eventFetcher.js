@@ -1,4 +1,3 @@
-const { RichEmbed } = require('discord.js');
 const fetch = require('node-fetch');
 const todaysDateCreator = require('../helpers/todaysDateCreator');
 const embedCreator = require('../helpers/embedCreator');
