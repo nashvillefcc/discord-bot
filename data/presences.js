@@ -50,7 +50,7 @@ module.exports = [
   },
   {
     game: {
-      name: 'instruction materials on submicron matrix transfer technology',
+      name: 'instructional materials on submicron matrix transfer technology',
       type: 'WATCHING'
     },
     status: 'online'
