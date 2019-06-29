@@ -30,8 +30,8 @@ const presenceSetter = schedule.scheduleJob(everyThirtyMinutes, () => {
 bot.once('ready', () => {
   bot.user.setPresence(presenceGenerator());
   console.log('Ready...');
-  checkEventToday();
-  presenceSetter();
+  checkEventToday.invoke();
+  presenceSetter.invoke();
   console.log(checkEventToday.nextInvocation());
   console.log(presenceSetter.nextInvocation());
 });
