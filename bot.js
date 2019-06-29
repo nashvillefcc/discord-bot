@@ -11,7 +11,7 @@ const commandHandler = require('./controllers/commandHandler');
 const bot = new Client();
 
 const everyThirtyMinutes = new schedule.RecurrenceRule();
-everyThirtyMinutes.minute = 30;
+everyThirtyMinutes.second = 30;
 everyThirtyMinutes.tz = 'America/Chicago';
 
 const everyMorningAtSeven = new schedule.RecurrenceRule();
