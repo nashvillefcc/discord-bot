@@ -21,7 +21,7 @@ module.exports = {
           const defaultEmbed = embedCreator(nextEvent, date);
           bot.channels
             .get(channelIds.monthlyMeetup_announcements)
-            .send('<@213089677652131841>', { embed: defaultEmbed });
+            .send({ nonce: '<@213089677652131841>', embed: defaultEmbed });
           break;
       }
     }
