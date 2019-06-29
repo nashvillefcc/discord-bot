@@ -10,10 +10,6 @@ const commandHandler = require('./controllers/commandHandler');
 
 const bot = new Client();
 
-const everyThirtyMinutes = new schedule.RecurrenceRule();
-everyThirtyMinutes.second = 30;
-everyThirtyMinutes.tz = 'America/Chicago';
-
 const everyMorningAtSeven = new schedule.RecurrenceRule();
 everyMorningAtSeven.hour = 7;
 everyMorningAtSeven.minute = 0;
@@ -23,7 +19,7 @@ const checkEventToday = schedule.scheduleJob(everyMorningAtSeven, async () => {
   eventFetcher.todayEventFetcher(bot);
 });
 
-const presenceSetter = schedule.scheduleJob(everyThirtyMinutes, () => {
+const presenceSetter = schedule.scheduleJob('* /30 * * * *', () => {
   bot.user.setPresence(presenceGenerator());
 });
 
@@ -32,8 +28,6 @@ bot.once('ready', () => {
   console.log('Ready...');
   checkEventToday.invoke();
   presenceSetter.invoke();
-  console.log(checkEventToday.nextInvocation());
-  console.log(presenceSetter.nextInvocation());
 });
 
 bot.login(token);
