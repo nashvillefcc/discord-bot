@@ -19,12 +19,14 @@ const checkEventToday = schedule.scheduleJob(everyMorningAtSeven, async () => {
   eventFetcher.todayEventFetcher(bot);
 });
 
-const presenceSetter = schedule.scheduleJob('* /30 * * * *', () => {
+const presenceSetter = () => {
   bot.user.setPresence(presenceGenerator());
+};
+
+const presenceScheduler = schedule.scheduleJob('* /30 * * * *', () => {
+  presenceSetter();
   if (bot.user.presence.game.name === 'Daisy Bell (Bicycle Built for Two)') {
-    setTimeout(() => {
-      bot.user.setPresence(presenceGenerator());
-    }, 109800);
+    setTimeout(presenceSetter, 109800);
   }
 });
 
@@ -32,7 +34,7 @@ bot.once('ready', () => {
   bot.user.setPresence(presenceGenerator());
   console.log('Ready...');
   checkEventToday.invoke();
-  presenceSetter.invoke();
+  presenceScheduler.invoke();
 });
 
 bot.login(token);
