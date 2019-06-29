@@ -22,7 +22,7 @@ module.exports = [
   },
   {
     game: {
-      name: 'Daisy Bell (Bicycle Built for Two) by Harry Dacre',
+      name: 'Daisy Bell (Bicycle Built for Two)',
       type: 'LISTENING'
     },
     status: 'online'

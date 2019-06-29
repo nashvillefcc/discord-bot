@@ -21,6 +21,11 @@ const checkEventToday = schedule.scheduleJob(everyMorningAtSeven, async () => {
 
 const presenceSetter = schedule.scheduleJob('* /30 * * * *', () => {
   bot.user.setPresence(presenceGenerator());
+  if (bot.user.presence.game.name === 'Daisy Bell (Bicycle Built for Two)') {
+    setTimeout(() => {
+      bot.user.setPresence(presenceGenerator());
+    }, 109800);
+  }
 });
 
 bot.once('ready', () => {
