@@ -37,8 +37,6 @@ bot.once('ready', () => {
   presenceScheduler.invoke();
 });
 
-bot.login(token);
-
 bot.on('message', async message => {
   if (message.content[0] === '!') {
     const response = await commandHandler(message);
@@ -57,3 +55,5 @@ bot.on('guildMemberAdd', member => {
       }>. This discord server has a bot (me!). Please use <#586210139053228042> to introduce yourself. Type \`!help\` or \`!commands\` to see things I can help you with.`
     );
 });
+
+bot.login(token);
