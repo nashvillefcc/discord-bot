@@ -10,5 +10,6 @@ module.exports = function(nextEvent, date) {
     .setDescription(
       nextEvent.description.replace(/<[^>]*>?/gm, '').slice(0, 280) +
         '... (Click title link for full description)'
-    );
+    )
+    .addField('Attention', '@everyone');
 };
