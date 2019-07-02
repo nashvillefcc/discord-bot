@@ -18,7 +18,7 @@ app.listen(process.env.PORT || 3000);
 
 setTimeout(() => {
   http.get(`https://${process.env.PROJECT_DOMAIN}.glitch.me`);
-}, 240000);
+}, 150000);
 
 const bot = new Client();
 
