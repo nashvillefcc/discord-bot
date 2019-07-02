@@ -3,6 +3,7 @@ const schedule = require('node-schedule-tz');
 const eventFetcher = require('./services/eventFetcher');
 const presenceGenerator = require('./helpers/presenceGenerator');
 const dotenv = require('dotenv');
+const http = require('http');
 dotenv.config();
 const token = process.env.TOKEN;
 const commandHandler = require('./controllers/commandHandler');
@@ -14,6 +15,10 @@ app.get('/', (req, res) => {
   res.sendStatus(200);
 });
 app.listen(process.env.PORT || 3000);
+
+setTimeout(() => {
+  http.get(`https://${process.env.PROJECT_DOMAIN}.glitch.me`);
+}, 240000);
 
 const bot = new Client();
 
