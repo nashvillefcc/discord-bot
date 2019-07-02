@@ -32,7 +32,7 @@ module.exports = commandHandler = message => {
     case `!didyoueverthinkyoumayenjoyasausage`: {
       return new RichEmbed().setImage('https://i.redd.it/uqxma5zdzqk11.png');
     }
-    case `!admins`: {
+    case `!mods`: {
       const admins = message.guild.members
         .filter(
           m =>
