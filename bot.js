@@ -2,11 +2,18 @@ const { Client, RichEmbed } = require('discord.js');
 const schedule = require('node-schedule-tz');
 const eventFetcher = require('./services/eventFetcher');
 const presenceGenerator = require('./helpers/presenceGenerator');
-const http = require('http');
 const dotenv = require('dotenv');
 dotenv.config();
 const token = process.env.TOKEN;
 const commandHandler = require('./controllers/commandHandler');
+
+const express = require('express');
+const app = express();
+app.use(express.static('public'));
+app.get('/', (req, res) => {
+  res.sendStatus(200);
+});
+app.listen(process.env.PORT || 3000);
 
 const bot = new Client();
 
