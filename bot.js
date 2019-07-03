@@ -3,22 +3,17 @@ const schedule = require('node-schedule-tz');
 const eventFetcher = require('./services/eventFetcher');
 const presenceGenerator = require('./helpers/presenceGenerator');
 const dotenv = require('dotenv');
-const http = require('http');
 dotenv.config();
 const token = process.env.TOKEN;
 const commandHandler = require('./controllers/commandHandler');
 
-const express = require('express');
-const app = express();
-app.use(express.static('public'));
-app.get('/', (req, res) => {
-  res.sendStatus(200);
-});
-app.listen(process.env.PORT || 3000);
-
-setTimeout(() => {
-  http.get(`https://${process.env.PROJECT_DOMAIN}.glitch.me`);
-}, 150000);
+require('http')
+  .createServer(async (req, res) => {
+    res.statusCode = 200;
+    res.write('ok');
+    res.end();
+  })
+  .listen(3000, () => console.log('Now listening on port 3000'));
 
 const bot = new Client();
 
