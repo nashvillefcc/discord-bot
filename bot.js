@@ -18,9 +18,8 @@ require('http')
 const bot = new Client();
 
 const everyMorningAtSeven = new schedule.RecurrenceRule();
-everyMorningAtSeven.hour = 7;
+everyMorningAtSeven.hour = 12;
 everyMorningAtSeven.minute = 0;
-everyMorningAtSeven.tz = 'America/Chicago';
 
 bot.once('ready', () => {
   bot.user.setPresence(presenceGenerator());
