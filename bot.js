@@ -1,4 +1,4 @@
-const { Client, RichEmbed } = require('discord.js');
+const { Client } = require('discord.js');
 const schedule = require('node-schedule-tz');
 const eventFetcher = require('./services/eventFetcher');
 const presenceGenerator = require('./helpers/presenceGenerator');
