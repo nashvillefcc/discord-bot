@@ -11,5 +11,5 @@ module.exports = event => {
     minute: '2-digit'
   })}\n\n**Where:**\n${event.venue.name}\n${event.venue.address_1}\n${
     event.venue.city
-  }, ${event.venue.state} ${event.venue.zip}`;
+  }, ${event.venue.state} ${event.venue.zip}\n\n${event.link}`;
 };
