@@ -6,9 +6,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 const token = process.env.TOKEN;
 const commandHandler = require('./controllers/commandHandler');
+const announceFetcher = require('./services/announceFetcher');
+const meetupTokenRefresher = require('./services/meetupTokenRefresher');
 
 require('http')
   .createServer(async (req, res) => {
+    console.log(req);
     res.statusCode = 200;
     res.write('ok');
     res.end();
@@ -29,6 +32,16 @@ bot.once('ready', () => {
   });
   schedule.scheduleJob(everyMorningAtSeven, async () => {
     eventFetcher.todayEventFetcher(bot);
+  });
+  schedule.scheduleJob('* /5 * * * *', () => {
+    announceFetcher.fetchAnnounced(bot);
+  });
+  schedule.scheduleJob('* * * /7 * *', () => {
+    meetupTokenRefresher(
+      process.env.CLIENT_ID,
+      process.env.CLIENT_SECRET,
+      process.env.REFRESH_TOKEN
+    );
   });
 });
 
