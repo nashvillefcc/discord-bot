@@ -20,10 +20,10 @@ module.exports = {
           break;
         }
         default: {
-          const message = eventMessageCreator(nextEvent);
+          const mmMessage = eventMessageCreator(nextEvent);
           bot.channels
             .get(channelIds.monthlyMeetup_announcements)
-            .send(message);
+            .send(mmMessage);
           break;
         }
       }
@@ -34,7 +34,7 @@ module.exports = {
     const nextEvent = await fetch(eventURL)
       .then(response => response.json())
       .then(body => body[0]);
-    const message = eventMessageCreator(nextEvent);
-    channel.send(message);
+    const nextEventMessage = eventMessageCreator(nextEvent);
+    channel.send(nextEventMessage);
   }
 };
