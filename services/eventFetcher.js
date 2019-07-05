@@ -12,18 +12,20 @@ module.exports = {
       .then(body => body[0]);
     if (nextEvent.local_date === todaysDate) {
       switch (nextEvent.name) {
-        case 'Mentor Night':
+        case 'Mentor Night': {
           const mnMessage = eventMessageCreator(nextEvent);
           bot.channels
             .get(channelIds.mentorNight_announcements)
             .send(mnMessage);
           break;
-        default:
+        }
+        default: {
           const message = eventMessageCreator(nextEvent);
           bot.channels
             .get(channelIds.monthlyMeetup_announcements)
             .send(message);
           break;
+        }
       }
     }
   },
