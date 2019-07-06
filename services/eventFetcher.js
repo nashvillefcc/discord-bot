@@ -36,5 +36,5 @@ module.exports = {
       .then(body => body[0]);
     const nextEventMessage = eventMessageCreator(nextEvent);
     channel.send(nextEventMessage);
-  }
+  },
 };
