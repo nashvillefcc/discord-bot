@@ -1,4 +1,5 @@
 module.exports = event => {
+  // fix timezone diff
   return `@everyone\n**Event:**\n${event.name}\n\n**When:**\n${new Date(
     `${event.local_date} ${event.local_time}`
   ).toLocaleString('en-US', {
