@@ -2,7 +2,6 @@ module.exports = event => {
   return `@everyone\n**Event:**\n${event.name}\n\n**When:**\n${new Date(
     `${event.local_date} ${event.local_time}`
   ).toLocaleString('en-US', {
-    timeZone: 'America/Chicago',
     weekday: 'long',
     month: 'long',
     day: 'numeric',

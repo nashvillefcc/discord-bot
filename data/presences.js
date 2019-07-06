@@ -1,13 +1,6 @@
 module.exports = [
   {
     game: {
-      name: 'robot pr0n',
-      type: 'WATCHING'
-    },
-    status: 'dnd'
-  },
-  {
-    game: {
       name: 'infinitely recurring binary patterns',
       type: 'WATCHING'
     },
