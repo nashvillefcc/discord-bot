@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const todaysDateCreator = require('../helpers/todaysDateCreator');
 const eventMessageCreator = require('../helpers/eventMessageCreator');
-const channelIds = require('../data/channel_ids');
+const channelIds = require('../data/channelIds');
 const eventURL = `https://api.meetup.com/freeCodeCamp-Nashville/events?&sign=true&photo-host=public&page=1`;
 
 module.exports = {
