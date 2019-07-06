@@ -1,16 +1,16 @@
 const fetch = require('node-fetch');
 const channelIds = require('../data/channel_ids');
 const eventMessageCreator = require('../helpers/eventMessageCreator');
-const dotenv = require('dotenv');
-dotenv.config();
 
 module.exports = {
-  async fetchAnnounced(bot) {
+  async fetchAnnounced(bot, accessToken) {
     const notifications = await fetch('https://api.meetup.com/notifications', {
-      headers: { Authorization: `Bearer ${process.env.ACCESS_TOKEN}` }
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
     })
       .then(response => response.json())
-      .then(data => data)
       .catch(err => console.log(err));
     notifications
       .filter(
@@ -24,20 +24,20 @@ module.exports = {
             `https://api.meetup.com/freeCodeCamp-Nashville/events/${event_id}`
           )
             .then(response => response.json())
-            .then(event => {
-              switch (event.name) {
+            .then(eventDetails => {
+              switch (eventDetails.name) {
                 case 'Mentor Night':
                   {
                     bot.channels
                       .get(channelIds.mentorNight_announcements)
-                      .send(eventMessageCreator(event));
+                      .send(eventMessageCreator(eventDetails));
                   }
                   break;
                 default:
                   {
                     bot.channels
                       .get(channelIds.monthlyMeetup_announcements)
-                      .send(eventMessageCreator(event));
+                      .send(eventMessageCreator(eventDetails));
                   }
                   break;
               }

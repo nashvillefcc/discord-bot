@@ -27,16 +27,20 @@ everyMorningAtSeven.minute = 0;
 bot.once('ready', () => {
   bot.user.setPresence(presenceGenerator());
   console.log('Ready...');
+  // sets a new presence every 30 minutes
   schedule.scheduleJob('* /30 * * * *', () => {
     bot.user.setPresence(presenceGenerator());
   });
+  // checks for an event at 7 o'clock every morning
   schedule.scheduleJob(everyMorningAtSeven, async () => {
     eventFetcher.todayEventFetcher(bot);
   });
+  // checks for event announcements every 5 minutes
   schedule.scheduleJob('* /5 * * * *', () => {
-    announceFetcher.fetchAnnounced(bot);
+    announceFetcher.fetchAnnounced(bot, process.env.ACCESS_TOKEN);
   });
-  schedule.scheduleJob('* * * /7 * *', () => {
+  // refreshes the access token on the 1st of every month
+  schedule.scheduleJob('* * * 1 * *', () => {
     meetupTokenRefresher(
       process.env.CLIENT_ID,
       process.env.CLIENT_SECRET,
