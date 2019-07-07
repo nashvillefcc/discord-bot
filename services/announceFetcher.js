@@ -7,8 +7,8 @@ module.exports = {
     const notifications = await fetch('https://api.meetup.com/notifications', {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
+        Authorization: `Bearer ${accessToken}`,
+      },
     })
       .then(response => response.json())
       .catch(err => console.log(err));
@@ -30,14 +30,14 @@ module.exports = {
                   {
                     bot.channels
                       .get(channelIds.mentorNight_announcements)
-                      .send(eventMessageCreator(eventDetails));
+                      .send('@everyone\n' + eventMessageCreator(eventDetails));
                   }
                   break;
                 default:
                   {
                     bot.channels
                       .get(channelIds.monthlyMeetup_announcements)
-                      .send(eventMessageCreator(eventDetails));
+                      .send('@everyone\n' + eventMessageCreator(eventDetails));
                   }
                   break;
               }
@@ -45,5 +45,5 @@ module.exports = {
             .catch(err => console.log(err));
         }
       });
-  }
+  },
 };
