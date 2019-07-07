@@ -2,12 +2,14 @@ const { Client } = require('discord.js');
 const schedule = require('node-schedule-tz');
 const eventFetcher = require('./services/eventFetcher');
 const presenceGenerator = require('./helpers/presenceGenerator');
-const dotenv = require('dotenv');
-dotenv.config();
-const token = process.env.TOKEN;
 const commandHandler = require('./controllers/commandHandler');
 const announceFetcher = require('./services/announceFetcher');
 const meetupTokenRefresher = require('./services/meetupTokenRefresher');
+
+const dotenv = require('dotenv');
+dotenv.config();
+
+const token = process.env.TOKEN;
 
 require('http')
   .createServer(async (req, res) => {
