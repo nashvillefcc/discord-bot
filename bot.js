@@ -1,11 +1,10 @@
-import { Client } from 'discord.js';
-import { config } from 'dotenv';
-import { RecurrenceRule, scheduleJob } from 'node-schedule';
-import commandHandler from './controllers/commandHandler';
-import presenceGenerator from './helpers/presenceGenerator';
-import { todayEventFetcher } from './services/eventFetcher';
-
-config();
+const { Client } = require('discord.js');
+const dotenv = require('dotenv');
+const { RecurrenceRule, scheduleJob } = require('node-schedule');
+const commandHandler = require('./controllers/commandHandler');
+const presenceGenerator = require('./helpers/presenceGenerator');
+const todayEventFetcher = require('./services/eventFetcher');
+dotenv.config();
 const token = process.env.TOKEN;
 
 require('http')
