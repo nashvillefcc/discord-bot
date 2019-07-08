@@ -1,11 +1,12 @@
-const { Client } = require('discord.js');
-const schedule = require('node-schedule');
-const eventFetcher = require('./services/eventFetcher');
-const presenceGenerator = require('./helpers/presenceGenerator');
-const dotenv = require('dotenv');
-dotenv.config();
+import { Client } from 'discord.js';
+import { config } from 'dotenv';
+import { RecurrenceRule, scheduleJob } from 'node-schedule';
+import commandHandler from './controllers/commandHandler';
+import presenceGenerator from './helpers/presenceGenerator';
+import { todayEventFetcher } from './services/eventFetcher';
+
+config();
 const token = process.env.TOKEN;
-const commandHandler = require('./controllers/commandHandler');
 
 require('http')
   .createServer(async (req, res) => {
@@ -17,18 +18,18 @@ require('http')
 
 const bot = new Client();
 
-const everyMorningAtSeven = new schedule.RecurrenceRule();
+const everyMorningAtSeven = new RecurrenceRule();
 everyMorningAtSeven.hour = 12;
 everyMorningAtSeven.minute = 0;
 
 bot.once('ready', () => {
   bot.user.setPresence(presenceGenerator());
   console.log('Ready...');
-  schedule.scheduleJob('* /30 * * * *', () => {
+  scheduleJob('* /30 * * * *', () => {
     bot.user.setPresence(presenceGenerator());
   });
-  schedule.scheduleJob(everyMorningAtSeven, async () => {
-    eventFetcher.todayEventFetcher(bot);
+  scheduleJob(everyMorningAtSeven, async () => {
+    todayEventFetcher(bot);
   });
 });
 
