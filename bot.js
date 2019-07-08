@@ -1,5 +1,5 @@
 const { Client } = require('discord.js');
-const schedule = require('node-schedule-tz');
+const schedule = require('node-schedule');
 const eventFetcher = require('./services/eventFetcher');
 const presenceGenerator = require('./helpers/presenceGenerator');
 const dotenv = require('dotenv');
