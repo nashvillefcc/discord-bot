@@ -38,7 +38,7 @@ bot.once('ready', () => {
   const voiceChannel = bot.channels.get('598195580912664590');
   for (let member of voiceChannel.members) {
     if (member.id !== '593109197759971338') {
-      member[1].setMute(true);
+      member.setMute(true);
     }
   }
   voiceChannel
