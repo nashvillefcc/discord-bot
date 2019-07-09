@@ -37,8 +37,7 @@ bot.once('ready', () => {
     .then(connection => {
       const stream = ytdl('https://youtu.be/F0IbjVq-fgs', {
         filter: 'audioonly',
-      });
-      stream.on('error', console.error);
+      }).on('error', console.error);
       const dispatcher = connection.playStream(stream, { seek: 0, volume: 1 });
       dispatcher.on('end', () => {
         voiceChannel.leave();
