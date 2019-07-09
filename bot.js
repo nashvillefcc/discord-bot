@@ -23,7 +23,7 @@ everyMorningAtSeven.hour = 12;
 everyMorningAtSeven.minute = 0;
 
 async function play(connection, url) {
-  connection.play(await ytdl(url), { type: 'opus' });
+  connection.playOpusStream(await ytdl(url));
 }
 
 bot.once('ready', () => {
