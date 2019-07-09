@@ -1,6 +1,6 @@
 const { Client } = require('discord.js');
 const dotenv = require('dotenv');
-const ytdl = require('ytdl-core');
+const ytdl = require('ytdl-core-discord');
 const { RecurrenceRule, scheduleJob } = require('node-schedule');
 const commandHandler = require('./controllers/commandHandler');
 const presenceGenerator = require('./helpers/presenceGenerator');
@@ -22,6 +22,10 @@ const everyMorningAtSeven = new RecurrenceRule();
 everyMorningAtSeven.hour = 12;
 everyMorningAtSeven.minute = 0;
 
+async function play(connection, url) {
+  connection.play(await ytdl(url), { type: 'opus' });
+}
+
 bot.once('ready', () => {
   bot.user.setPresence(presenceGenerator());
   console.log('Ready...');
@@ -34,19 +38,9 @@ bot.once('ready', () => {
   const voiceChannel = bot.channels.get('598195580912664590');
   voiceChannel
     .join()
-    .then(async connection => {
-      let stream = ytdl('https://youtu.be/F0IbjVq-fgs', {
-        filter: 'audioonly',
-      });
-      stream.on('error', console.error);
-      let dispatcher = await connection.playStream(stream, {
-        seek: 0,
-        volume: 1,
-      });
-      dispatcher.on('end', () => {
-        voiceChannel.leave();
-      });
-    })
+    .then(connection =>
+      play(connection, 'https://www.youtube.com/watch?v=F0IbjVq-fgs')
+    )
     .catch(err => console.log(err));
 });
 
