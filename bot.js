@@ -39,6 +39,8 @@ bot.once('ready', () => {
   voiceChannel.members.forEach(m => {
     if (m.id !== '593109197759971338') {
       m.setMute(true);
+    } else {
+      m.setMute(false);
     }
   });
   voiceChannel
