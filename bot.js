@@ -35,10 +35,14 @@ bot.once('ready', () => {
   voiceChannel
     .join()
     .then(connection => {
-      const stream = ytdl('https://www.youtube.com/watch?v=F0IbjVq-fgs', {
+      const stream = ytdl('https://youtu.be/F0IbjVq-fgs', {
         filter: 'audioonly',
       });
-      connection.playStream(stream, { seek: 0, volume: 1 });
+      stream.on('error', console.error);
+      const dispatcher = connection.playStream(stream, { seek: 0, volume: 1 });
+      dispatcher.on('end', () => {
+        voiceChannel.leave();
+      });
     })
     .catch(err => console.log(err));
 });
