@@ -34,11 +34,15 @@ bot.once('ready', () => {
   const voiceChannel = bot.channels.get('598195580912664590');
   voiceChannel
     .join()
-    .then(connection => {
-      const stream = ytdl('https://youtu.be/F0IbjVq-fgs', {
+    .then(async connection => {
+      let stream = ytdl('https://youtu.be/F0IbjVq-fgs', {
         filter: 'audioonly',
-      }).on('error', console.error);
-      const dispatcher = connection.playStream(stream, { seek: 0, volume: 1 });
+      });
+      stream.on('error', console.error);
+      let dispatcher = await connection.playStream(stream, {
+        seek: 0,
+        volume: 1,
+      });
       dispatcher.on('end', () => {
         voiceChannel.leave();
       });
