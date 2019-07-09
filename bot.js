@@ -38,10 +38,7 @@ bot.once('ready', () => {
       const stream = ytdl('https://www.youtube.com/watch?v=F0IbjVq-fgs', {
         filter: 'audioonly',
       });
-      const dispatcher = connection.playStream(stream, { seek: 0, volume: 1 });
-      dispatcher.on('end', () => {
-        voiceChannel.leave();
-      });
+      connection.playStream(stream, { seek: 0, volume: 1 });
     })
     .catch(err => console.log(err));
 });
