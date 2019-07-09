@@ -36,11 +36,11 @@ bot.once('ready', () => {
     todayEventFetcher(bot);
   });
   const voiceChannel = bot.channels.get('598195580912664590');
-  for (let member of voiceChannel.members) {
-    if (member.id !== '593109197759971338') {
-      member.setMute(true);
+  voiceChannel.members.forEach(m => {
+    if (m.id !== '593109197759971338') {
+      m.setMute(true);
     }
-  }
+  });
   voiceChannel
     .join()
     .then(connection =>
