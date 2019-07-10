@@ -13,14 +13,14 @@ module.exports = {
     if (nextEvent.local_date === todaysDate) {
       switch (nextEvent.name) {
         case 'Mentor Night': {
-          const mnMessage = '@everyone' + eventMessageCreator(nextEvent);
+          const mnMessage = '@everyone\n' + eventMessageCreator(nextEvent);
           bot.channels
             .get(channelIds.mentorNight_announcements)
             .send(mnMessage);
           break;
         }
         default: {
-          const mmMessage = '@everyone' + eventMessageCreator(nextEvent);
+          const mmMessage = '@everyone\n' + eventMessageCreator(nextEvent);
           bot.channels
             .get(channelIds.monthlyMeetup_announcements)
             .send(mmMessage);
@@ -36,5 +36,5 @@ module.exports = {
       .then(body => body[0]);
     const nextEventMessage = eventMessageCreator(nextEvent);
     channel.send(nextEventMessage);
-  },
+  }
 };
