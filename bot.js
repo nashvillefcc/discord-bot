@@ -35,7 +35,7 @@ bot.once('ready', () => {
   scheduleJob(everyMorningAtEight, async () => {
     eventFetcher.todayEventFetcher(bot);
   });
-  const voiceChannel = bot.channels.get('598195580912664590');
+  const voiceChannel = bot.channels.get('598594516580171817');
   voiceChannel.members.forEach(m => {
     if (m.id !== '593109197759971338') {
       m.setMute(true);
