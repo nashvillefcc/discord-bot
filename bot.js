@@ -1,6 +1,6 @@
 const { Client } = require('discord.js');
 const dotenv = require('dotenv');
-// const ytdl = require('ytdl-core-discord');
+const ytdl = require('ytdl-core-discord');
 const { RecurrenceRule, scheduleJob } = require('node-schedule');
 const commandHandler = require('./controllers/commandHandler');
 const presenceGenerator = require('./helpers/presenceGenerator');
@@ -22,9 +22,9 @@ const everyMorningAtEight = new RecurrenceRule();
 everyMorningAtEight.hour = 13;
 everyMorningAtEight.minute = 0;
 
-// async function play(connection, url) {
-//   connection.playOpusStream(await ytdl(url));
-// }
+async function play(connection, url) {
+  connection.playOpusStream(await ytdl(url));
+}
 
 bot.once('ready', () => {
   bot.user.setPresence(presenceGenerator());
@@ -35,21 +35,20 @@ bot.once('ready', () => {
   scheduleJob(everyMorningAtEight, async () => {
     eventFetcher.todayEventFetcher(bot);
   });
-  // This is cool but seems to mess with the announcements
-  // const voiceChannel = bot.channels.get('598195580912664590');
-  // voiceChannel.members.forEach(m => {
-  //   if (m.id !== '593109197759971338') {
-  //     m.setMute(true);
-  //   } else {
-  //     m.setMute(false);
-  //   }
-  // });
-  // voiceChannel
-  //   .join()
-  //   .then(connection =>
-  //     play(connection, 'https://www.youtube.com/watch?v=F0IbjVq-fgs')
-  //   )
-  //   .catch(err => console.log(err));
+  const voiceChannel = bot.channels.get('598195580912664590');
+  voiceChannel.members.forEach(m => {
+    if (m.id !== '593109197759971338') {
+      m.setMute(true);
+    } else {
+      m.setMute(false);
+    }
+  });
+  voiceChannel
+    .join()
+    .then(connection =>
+      play(connection, 'https://www.youtube.com/watch?v=F0IbjVq-fgs')
+    )
+    .catch(err => console.log(err));
 });
 
 bot.on('message', async message => {
