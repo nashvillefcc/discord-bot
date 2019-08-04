@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const channelIds = require('../data/channel_ids');
+const channelIds = require('../data/channelIds');
 const eventMessageCreator = require('../helpers/eventMessageCreator');
 
 module.exports = {
@@ -7,8 +7,8 @@ module.exports = {
     const notifications = await fetch('https://api.meetup.com/notifications', {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
+        Authorization: `Bearer ${accessToken}`
+      }
     })
       .then(response => response.json())
       .catch(err => console.log(err));
@@ -45,5 +45,5 @@ module.exports = {
             .catch(err => console.log(err));
         }
       });
-  },
+  }
 };
