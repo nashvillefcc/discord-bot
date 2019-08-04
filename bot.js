@@ -1,12 +1,12 @@
 const { Client } = require('discord.js');
-const schedule = require('node-schedule');
-const eventFetcher = require('./services/eventFetcher');
-const presenceGenerator = require('./helpers/presenceGenerator');
-const commandHandler = require('./controllers/commandHandler');
 const announceFetcher = require('./services/announceFetcher');
 const meetupTokenRefresher = require('./services/meetupTokenRefresher');
-
 const dotenv = require('dotenv');
+const ytdl = require('ytdl-core-discord');
+const { RecurrenceRule, scheduleJob } = require('node-schedule');
+const commandHandler = require('./controllers/commandHandler');
+const presenceGenerator = require('./helpers/presenceGenerator');
+const eventFetcher = require('./services/eventFetcher');
 dotenv.config();
 
 const token = process.env.TOKEN;
@@ -22,33 +22,47 @@ require('http')
 
 const bot = new Client();
 
-const everyMorningAtSeven = new schedule.RecurrenceRule();
-everyMorningAtSeven.hour = 12;
-everyMorningAtSeven.minute = 0;
+const everyMorningAtEight = new RecurrenceRule();
+everyMorningAtEight.hour = 13;
+everyMorningAtEight.minute = 0;
+
+async function play(connection, url) {
+  connection.playOpusStream(await ytdl(url));
+}
 
 bot.once('ready', () => {
   bot.user.setPresence(presenceGenerator());
   console.log('Ready...');
-  // sets a new presence every 30 minutes
-  schedule.scheduleJob('* /30 * * * *', () => {
+  scheduleJob('* /30 * * * *', () => {
     bot.user.setPresence(presenceGenerator());
   });
-  // checks for an event at 7 o'clock every morning
-  schedule.scheduleJob(everyMorningAtSeven, async () => {
+  scheduleJob(everyMorningAtEight, async () => {
     eventFetcher.todayEventFetcher(bot);
   });
-  // checks for event announcements every 5 minutes
-  schedule.scheduleJob('* /5 * * * *', () => {
+  scheduleJob('* /5 * * * *', () => {
     announceFetcher.fetchAnnounced(bot, process.env.ACCESS_TOKEN);
   });
-  // refreshes the access token on the 1st of every month
-  schedule.scheduleJob('* * * 1 * *', () => {
+  scheduleJob('* * * 1 * *', () => {
     meetupTokenRefresher(
       process.env.CLIENT_ID,
       process.env.CLIENT_SECRET,
       process.env.REFRESH_TOKEN
     );
   });
+  const voiceChannel = bot.channels.get('598594516580171817');
+  voiceChannel.members.forEach(m => {
+    if (m.id !== '593109197759971338') {
+      m.setMute(true);
+    } else {
+      m.setMute(false);
+    }
+  });
+  voiceChannel
+    .join()
+    .then(connection =>
+      play(connection, 'https://www.youtube.com/watch?v=F0IbjVq-fgs')
+    )
+    .catch(err => console.log(err));
 });
 
 bot.on('message', async message => {

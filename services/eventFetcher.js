@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const todaysDateCreator = require('../helpers/todaysDateCreator');
 const eventMessageCreator = require('../helpers/eventMessageCreator');
-const channelIds = require('../data/channel_ids');
+const channelIds = require('../data/channelIds');
 const eventURL = `https://api.meetup.com/freeCodeCamp-Nashville/events?&sign=true&photo-host=public&page=1`;
 
 module.exports = {
@@ -13,14 +13,14 @@ module.exports = {
     if (nextEvent.local_date === todaysDate) {
       switch (nextEvent.name) {
         case 'Mentor Night': {
-          const mnMessage = eventMessageCreator(nextEvent);
+          const mnMessage = '@everyone\n' + eventMessageCreator(nextEvent);
           bot.channels
             .get(channelIds.mentorNight_announcements)
             .send(mnMessage);
           break;
         }
         default: {
-          const mmMessage = eventMessageCreator(nextEvent);
+          const mmMessage = '@everyone\n' + eventMessageCreator(nextEvent);
           bot.channels
             .get(channelIds.monthlyMeetup_announcements)
             .send(mmMessage);

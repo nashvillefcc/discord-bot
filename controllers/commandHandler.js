@@ -3,7 +3,7 @@ const { RichEmbed } = require('discord.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
-module.exports = commandHandler = message => {
+module.exports = message => {
   switch (message.content) {
     case '!test': {
       return 'Test message.';
@@ -20,7 +20,7 @@ module.exports = commandHandler = message => {
       return `The time is now ${new Date().toLocaleTimeString('en-US', {
         timeZone: 'America/Chicago',
         hour: '2-digit',
-        minute: '2-digit'
+        minute: '2-digit',
       })}.`;
     }
     case `!next-event`: {
@@ -32,16 +32,18 @@ module.exports = commandHandler = message => {
     case `!didyoueverthinkyoumayenjoyasausage`: {
       return new RichEmbed().setImage('https://i.redd.it/uqxma5zdzqk11.png');
     }
-    case `!mods`: {
-      const admins = message.guild.members
-        .filter(
-          m =>
-            m._roles.includes('563146021706661909') ||
-            m._roles.includes('588375598553104434')
-        )
-        .filter(a => a.presence.status === 'online');
-      admins.map(a => message.channel.send(`${a}`));
-    }
+    case `!mods`:
+      {
+        const admins = message.guild.members
+          .filter(
+            m =>
+              m._roles.includes('563146021706661909') ||
+              m._roles.includes('588375598553104434')
+          )
+          .filter(a => a.presence.status === 'online');
+        admins.map(a => message.channel.send(`${a}`));
+      }
+      break;
     default:
       return '';
   }
