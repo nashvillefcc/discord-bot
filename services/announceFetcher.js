@@ -42,7 +42,9 @@ module.exports = {
                   break;
               }
             })
-            .catch(err => console.log(err));
+            .catch(err =>
+              console.log('error with fetching notifications ' + err)
+            );
         }
       });
   }
