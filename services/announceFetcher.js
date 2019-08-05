@@ -11,7 +11,7 @@ module.exports = {
       }
     })
       .then(response => response.json())
-      .catch(err => console.log(err));
+      .catch(err => console.log('error fetching announcements' + err));
     notifications
       .filter(
         n => n.kind === 'event_announce' && n.target.group_id === '22817838'
