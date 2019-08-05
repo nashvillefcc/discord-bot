@@ -1,6 +1,5 @@
 const { Client } = require('discord.js');
 const announceFetcher = require('./services/announceFetcher');
-const meetupTokenRefresher = require('./services/meetupTokenRefresher');
 const dotenv = require('dotenv');
 const ytdl = require('ytdl-core-discord');
 const { RecurrenceRule, scheduleJob } = require('node-schedule');
@@ -41,13 +40,6 @@ bot.once('ready', () => {
   });
   scheduleJob('* /5 * * * *', () => {
     announceFetcher.fetchAnnounced(bot, process.env.ACCESS_TOKEN);
-  });
-  scheduleJob('* * * 1 * *', () => {
-    meetupTokenRefresher(
-      process.env.CLIENT_ID,
-      process.env.CLIENT_SECRET,
-      process.env.REFRESH_TOKEN
-    );
   });
   const voiceChannel = bot.channels.get('598594516580171817');
   voiceChannel.members.forEach(m => {
