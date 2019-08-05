@@ -7,7 +7,8 @@ module.exports = {
     const notifications = await fetch('https://api.meetup.com/notifications', {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
     })
       .then(response => response.json())
