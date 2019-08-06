@@ -1,7 +1,6 @@
 const { Client } = require('discord.js');
 const announceFetcher = require('./services/announceFetcher');
 const dotenv = require('dotenv');
-const ytdl = require('ytdl-core-discord');
 const { RecurrenceRule, scheduleJob } = require('node-schedule');
 const commandHandler = require('./controllers/commandHandler');
 const presenceGenerator = require('./helpers/presenceGenerator');
@@ -25,10 +24,6 @@ const everyMorningAtEight = new RecurrenceRule();
 everyMorningAtEight.hour = 13;
 everyMorningAtEight.minute = 0;
 
-async function play(connection, url) {
-  connection.playOpusStream(await ytdl(url));
-}
-
 bot.once('ready', () => {
   bot.user.setPresence(presenceGenerator());
   console.log('Ready...');
@@ -41,20 +36,6 @@ bot.once('ready', () => {
   scheduleJob('* /5 * * * *', () => {
     announceFetcher.fetchAnnounced(bot, process.env.ACCESS_TOKEN);
   });
-  const voiceChannel = bot.channels.get('598594516580171817');
-  voiceChannel.members.forEach(m => {
-    if (m.id !== '593109197759971338') {
-      m.setMute(true);
-    } else {
-      m.setMute(false);
-    }
-  });
-  voiceChannel
-    .join()
-    .then(connection =>
-      play(connection, 'https://www.youtube.com/watch?v=F0IbjVq-fgs')
-    )
-    .catch(err => console.log(err));
 });
 
 bot.on('message', async message => {
