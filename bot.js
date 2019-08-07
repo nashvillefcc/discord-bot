@@ -53,7 +53,7 @@ bot.on('guildMemberAdd', member => {
     .send(
       `Greetings <@${
         member.id
-      }>. This discord server has a bot (me!). Please use <#586210139053228042> to introduce yourself. Type \`!help\` or \`!commands\` to see things I can help you with.`
+      }>. This discord server has a bot (me!). Please use the <#586210139053228042> channel to introduce yourself. Type \`!help\` or \`!commands\` to see things I can help you with.`
     );
 });
 
