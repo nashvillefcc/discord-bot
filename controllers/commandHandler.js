@@ -6,7 +6,7 @@ dotenv.config();
 module.exports = message => {
   switch (message.content) {
     case '!test': {
-      return 'Test message.';
+      return 'Test message from my laptop.';
     }
     case '!help':
     case '!commands': {
