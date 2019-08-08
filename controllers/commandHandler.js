@@ -6,7 +6,7 @@ dotenv.config();
 module.exports = message => {
   switch (message.content) {
     case '!test': {
-      return 'Test message.';
+      return 'Test message from my laptop.';
     }
     case '!help':
     case '!commands': {
@@ -20,7 +20,7 @@ module.exports = message => {
       return `The time is now ${new Date().toLocaleTimeString('en-US', {
         timeZone: 'America/Chicago',
         hour: '2-digit',
-        minute: '2-digit',
+        minute: '2-digit'
       })}.`;
     }
     case `!next-event`: {
